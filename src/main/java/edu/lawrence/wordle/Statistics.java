@@ -34,23 +34,41 @@ public class Statistics {
     }
     
     private void readSave(){
-        try {
-            Scanner in = new Scanner(new File("statistics.txt"));
-            gamesPlayed = in.nextInt();
-            gamesWon = in.nextInt();
-            currentStreak = in.nextInt();
-            maxStreak = in.nextInt();
-            oneGuess = in.nextInt();
-            twoGuesses = in.nextInt();
-            threeGuesses = in.nextInt();
-            fourGuesses = in.nextInt();
-            fiveGuesses = in.nextInt();
-            sixGuesses = in.nextInt();
-            maxGuesses = in.nextInt();
-            System.out.println(gamesPlayed + ", " + gamesWon + ", " + currentStreak + ", " + maxStreak);
-            System.out.println(oneGuess + ", " + twoGuesses + ", " + threeGuesses + ", " + fourGuesses + ", " + fiveGuesses + ", " + sixGuesses);
-        } catch(FileNotFoundException ex) {
-            ex.printStackTrace();
+        File saveFile = new File("statistics.txt");
+        if(saveFile.exists()) {
+            try {
+                Scanner in = new Scanner(saveFile);
+                gamesPlayed = in.nextInt();
+                gamesWon = in.nextInt();
+                currentStreak = in.nextInt();
+                maxStreak = in.nextInt();
+                oneGuess = in.nextInt();
+                twoGuesses = in.nextInt();
+                threeGuesses = in.nextInt();
+                fourGuesses = in.nextInt();
+                fiveGuesses = in.nextInt();
+                sixGuesses = in.nextInt();
+                maxGuesses = in.nextInt();
+                System.out.println(gamesPlayed + ", " + gamesWon + ", " + currentStreak + ", " + maxStreak);
+                System.out.println(oneGuess + ", " + twoGuesses + ", " + threeGuesses + ", " + fourGuesses + ", " + fiveGuesses + ", " + sixGuesses);
+            } catch(FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("Save file not found");
+
+            // Set defaults if saveFile isn't found
+            gamesPlayed = 0;
+            gamesWon = 0;
+            currentStreak = 0;
+            maxStreak = 0;
+            oneGuess = 0;
+            twoGuesses = 0;
+            threeGuesses = 0;
+            fourGuesses = 0;
+            fiveGuesses = 0;
+            sixGuesses = 0;
+            maxGuesses = 0;
         }
     }
     
