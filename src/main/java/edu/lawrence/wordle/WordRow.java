@@ -18,7 +18,7 @@ public class WordRow {
     private ArrayList<Cell> cells;
     private static String secretWord;
     private int cursor;
-    private static Font font = new Font("Arial", 25);
+    final private static Font font = new Font("Arial", 25);
     
     public WordRow(GamePane pane, int row) {
         cells = new ArrayList<Cell>();

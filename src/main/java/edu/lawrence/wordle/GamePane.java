@@ -84,10 +84,11 @@ public class GamePane extends Pane {
         
         if (w.checkWord(this)) {
             System.out.println("Correct!");
-            stats.gameWon(cursor);
+            stats.gameWon(cursor);  // Update statistics with the win
+            cursor = 7;
+            wait(750);  // Pause so the player can see their correct guess b4 displaying stats
             stats.displayStatistics(this);
             statsVisible = true;
-            cursor = 7;
         } else {
             System.out.println("Incorrect Guess");
             cursor++;
@@ -97,6 +98,15 @@ public class GamePane extends Pane {
                 stats.displayStatistics(this);
                 statsVisible = true;
             }
+        }
+    }
+
+    // Method to delay the program for a specified amount of milliseconds
+    public static void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
         }
     }
     

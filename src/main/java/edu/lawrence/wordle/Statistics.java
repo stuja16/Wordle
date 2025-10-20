@@ -15,13 +15,14 @@ public class Statistics {
                 gamesWon,
                 currentStreak,
                 maxStreak,
-                oneGuess,       // Keep track of wins in certain numberw of guesses
+                oneGuess,       // Keep track of wins in a certain number of guesses
                 twoGuesses,
                 threeGuesses,
                 fourGuesses,
                 fiveGuesses,
                 sixGuesses,
-                maxGuesses;
+                maxGuesses,     // Keeps track of the category with the largest number of guesses
+                currentGuess;   // # of guesses in the last game if won and in the current session
     private Rectangle rect;     // Background for displaying statistics
     private ArrayList<Text> texts;
     private ArrayList<Rectangle> bars;
@@ -125,7 +126,8 @@ public class Statistics {
         texts.add(oneBarValue);
         
         Rectangle oneBar = new Rectangle(labelX+10, top+190, oneBarLength, 18);
-        oneBar.setFill(Color.DARKSLATEGREY);
+        if (currentGuess == 1) {oneBar.setFill(Color.GREEN);
+        } else {oneBar.setFill(Color.DARKSLATEGREY);}
         bars.add(oneBar);
         
         Text twoBarLabel = new Text(labelX, top+230, "2");
@@ -141,7 +143,8 @@ public class Statistics {
         texts.add(twoBarValue);
         
         Rectangle twoBar = new Rectangle(labelX+10, top+215, twoBarLength, 18);
-        twoBar.setFill(Color.DARKSLATEGREY);
+        if (currentGuess == 2) {twoBar.setFill(Color.GREEN);
+        } else {twoBar.setFill(Color.DARKSLATEGREY);}
         bars.add(twoBar);
         
         Text threeBarLabel = new Text(labelX, top+255, "3");
@@ -157,7 +160,8 @@ public class Statistics {
         texts.add(threeBarValue);
         
         Rectangle threeBar = new Rectangle(labelX+10, top+240, threeBarLength, 18);
-        threeBar.setFill(Color.DARKSLATEGREY);
+        if (currentGuess == 3) {threeBar.setFill(Color.GREEN);
+        } else {threeBar.setFill(Color.DARKSLATEGREY);}
         bars.add(threeBar);
         
         Text fourBarLabel = new Text(labelX, top+280, "4");
@@ -173,7 +177,8 @@ public class Statistics {
         texts.add(fourBarValue);
         
         Rectangle fourBar = new Rectangle(labelX+10, top+265, fourBarLength, 18);
-        fourBar.setFill(Color.DARKSLATEGREY);
+        if (currentGuess == 4) {fourBar.setFill(Color.GREEN);
+        } else {fourBar.setFill(Color.DARKSLATEGREY);}
         bars.add(fourBar);
         
         Text fiveBarLabel = new Text(labelX, top+305, "5");
@@ -189,7 +194,8 @@ public class Statistics {
         texts.add(fiveBarValue);
         
         Rectangle fiveBar = new Rectangle(labelX+10, top+290, fiveBarLength, 18);
-        fiveBar.setFill(Color.DARKSLATEGREY);
+        if (currentGuess == 5) {fiveBar.setFill(Color.GREEN);
+        } else {fiveBar.setFill(Color.DARKSLATEGREY);}
         bars.add(fiveBar);
         
         Text sixBarLabel = new Text(labelX, top+330, "6");
@@ -205,7 +211,8 @@ public class Statistics {
         texts.add(sixBarValue);
         
         Rectangle sixBar = new Rectangle(labelX+10, top+315, sixBarLength, 18);
-        sixBar.setFill(Color.DARKSLATEGREY);
+        if (currentGuess == 6) {sixBar.setFill(Color.GREEN);
+        } else {sixBar.setFill(Color.DARKSLATEGREY);}
         bars.add(sixBar);
         
         pane.getChildren().add(rect);
@@ -245,21 +252,27 @@ public class Statistics {
         
         if (g == 0) {
             oneGuess++;
+            currentGuess = 1;
             if (oneGuess > maxGuesses) { maxGuesses++; }
         } else if (g == 1) {
             twoGuesses++;
+            currentGuess = 2;
             if (twoGuesses > maxGuesses) { maxGuesses++; }
         } else if (g == 2) {
             threeGuesses++;
+            currentGuess = 3;
             if (threeGuesses > maxGuesses) { maxGuesses++; }
         } else if (g == 3) {
             fourGuesses++;
+            currentGuess = 4;
             if (fourGuesses > maxGuesses) { maxGuesses++; }
         } else if (g == 4) {
             fiveGuesses++;
+            currentGuess = 5;
             if (fiveGuesses > maxGuesses) { maxGuesses++; }
         } else {
             sixGuesses++;
+            currentGuess = 6;
             if (sixGuesses > maxGuesses) { maxGuesses++; }
         }
         

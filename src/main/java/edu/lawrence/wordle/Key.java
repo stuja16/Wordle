@@ -13,7 +13,7 @@ public class Key {
     private String letter;
     private Text text;
     private Rectangle rect;
-    private static Font font = new Font("Arial", 12);
+    final private static Font font = new Font("Arial", 12);
 
     public Key(String letter, double rowLength, int row, double col) {
         double xVal = col - (rowLength/2);

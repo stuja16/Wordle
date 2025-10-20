@@ -11,9 +11,9 @@ public class Cell {
     private static final int MARGINS = 10;
     private Key key;
     private Text text;
-    private Rectangle rect;
-    private int row, col;
-    private static Font font = new Font("Monospaced Bold", 40);
+    final private Rectangle rect;
+    final private int row, col;
+    final private static Font font = new Font("Monospaced Bold", 40);
     
     public Cell(int row, int col) {
         this.row = row;
