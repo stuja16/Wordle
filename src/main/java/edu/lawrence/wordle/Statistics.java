@@ -95,8 +95,25 @@ public class Statistics {
         }
     }
     
+    // Centers "text" in the middle of a string of length "totalSize"
+    // Controls for both odd and even length inputs
+    private String centerText(String text, int totalSize) {
+        int padding = (totalSize - text.length()) / 2;
+        
+        // String length and desired size have identical polarity
+        if ((totalSize - text.length())%2 == 0) {
+            if (padding == 0) { return text; }
+            return String.format("%" + padding + "s%s%" + padding + "s", "", text, "");
+        }
+        
+        // String length and desired size have opposite polarity, so adjust by 1
+        if (padding == 0) { return String.format("%" + 1 + "s%s", "", text); }
+        int startPadding = padding + 1;
+        return String.format("%" + startPadding + "s%s%" + padding + "s", "", text, "");
+    }
+    
     public void displayStatistics(GamePane pane) {
-        double avgWinPercentage = (double)gamesWon/gamesPlayed; // Calculate current average win percentage
+        int winPercentage = (int)(((double)gamesWon)/((double)gamesPlayed)*100.0); // Calculate current win percentage
         int top = 175;
         rect = new Rectangle(275, top, 450, 400);
         rect.setFill(Color.BLACK);
@@ -106,8 +123,15 @@ public class Statistics {
         title.setFill(Color.WHITE);
         texts.add(title);
         
-        int valuesX = 400;
-        Text values = new Text(valuesX, top+90, gamesPlayed + " " + gamesWon + "  " + currentStreak + "  " + maxStreak);
+        final int valuesX = 400;
+        final int scoreWidth = 3; // Stat values above 3-figures will break display
+        String numericalStats = centerText(Integer.toString(gamesPlayed), scoreWidth);
+        numericalStats += centerText(Integer.toString(winPercentage), scoreWidth);
+        numericalStats += " ";
+        numericalStats += centerText(Integer.toString(currentStreak), scoreWidth);
+        numericalStats += centerText(Integer.toString(maxStreak), scoreWidth);
+        System.out.println(numericalStats);
+        Text values = new Text(valuesX-10, top+90, numericalStats);
         values.setFont(new Font("Arial", 40));
         values.setFill(Color.WHITE);
         texts.add(values);
@@ -135,6 +159,8 @@ public class Statistics {
         oneBarLabel.setFill(Color.WHITE);
         texts.add(oneBarLabel);
         
+        // Text offset within the bar is optimized for 2-charater values
+        // 3-charater values will slightly overflow bar-space
         int maxBarLength = 340;
         double oneBarLength = (double)oneGuess/maxGuesses * maxBarLength;
         if (oneBarLength < 30) { oneBarLength = 30; }
