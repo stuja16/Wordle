@@ -12,7 +12,7 @@ This was one of my first attempts at implementing a GUI in Java, and working thr
 
 ## Executing program
 
-The program was originally written in the NetBeans IDE, and I have included the related project files in this repository for convenience.
+The program was originally written in the [Apache NetBeans IDE](https://netbeans.apache.org/front/main/index.html), and I have included the related project files in this repository for convenience.
 If you wish to run the program in another environment, you will have to delete this file or copy the java/fxml files into a new project folder.
 
 ## Game in Action
