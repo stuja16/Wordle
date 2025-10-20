@@ -130,7 +130,6 @@ public class Statistics {
         numericalStats += " ";
         numericalStats += centerText(Integer.toString(currentStreak), scoreWidth);
         numericalStats += centerText(Integer.toString(maxStreak), scoreWidth);
-        System.out.println(numericalStats);
         Text values = new Text(valuesX-10, top+90, numericalStats);
         values.setFont(new Font("Arial", 40));
         values.setFill(Color.WHITE);

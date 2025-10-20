@@ -2,7 +2,6 @@ package edu.lawrence.wordle;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Shape;
 import javafx.scene.layout.Pane;
 
 public class GamePane extends Pane {
@@ -36,8 +35,7 @@ public class GamePane extends Pane {
         
         double lastX = e.getX();
         double lastY = e.getY();
-        Key k = keys.findKey(lastX, lastY);
-        clickKey(k);
+        clickKey(keys.findKey(lastX, lastY));
     }
     
     // Responds to keyboard inputs to add letters
@@ -52,17 +50,16 @@ public class GamePane extends Pane {
             letter = "Delete";
         }
         
-        // Call next function
         clickKey(keys.findKey(letter));
     }
     
-    // Processes valid keyboard inputs
+    // Processes valid key inputs
     private void clickKey(Key k) {
         if (k == null) { return; }
         String letter = k.getLetter();
         WordRow w = words[cursor];
         
-        // Logic between letter key, enter key, and delete key
+        // Separate logic for the enter and delete keys from normal letters
         if (letter.length() == 1) {
             w.addLetter(this, k);
         } else if (letter.equals("Enter")) {
@@ -86,6 +83,10 @@ public class GamePane extends Pane {
             System.out.println("Correct!");
             stats.gameWon(cursor);  // Update statistics with the win
             cursor = 7;
+            /*
+                Known bug: cells aren't colored during "wait" function call
+                Not sure why, all "setColor" runs have completed
+            */
             wait(750);  // Pause so the player can see their correct guess b4 displaying stats
             stats.displayStatistics(this);
             statsVisible = true;

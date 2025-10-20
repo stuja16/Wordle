@@ -49,15 +49,19 @@ public class Cell {
     public void setColor(GamePane pane, int value) {
         pane.getChildren().removeAll(rect, text);
         
-        if (value == 1) {
-            rect.setFill(green);
-            key.setColor(pane, green);
-        } else if (value == 2) {
-            rect.setFill(yellow);
-            key.setColor(pane, yellow);
-        } else {
-            rect.setFill(darkGrey);
-            key.setColor(pane, darkGrey);
+        switch(value) {
+            case 1:
+                rect.setFill(green);
+                key.setColor(pane, green);
+                break;
+            case 2:
+                rect.setFill(yellow);
+                key.setColor(pane, yellow);
+                break;
+            default:
+                rect.setFill(darkGrey);
+                key.setColor(pane, darkGrey);
+                break;
         }
         rect.setStroke(null);
         text.setFill(Color.WHITE);

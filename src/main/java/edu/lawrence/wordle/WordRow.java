@@ -64,25 +64,24 @@ public class WordRow {
         boolean correct = true;
         ArrayList<Integer> used = new ArrayList<Integer>();
         
-        // iterates over the cells in the row
-        for (int i = 0; i < 5; i++) {
-            Cell c = cells.get(i);
-            boolean green = false;
+        // iterates over cells in the row
+        for (int guessCellIndex = 0; guessCellIndex < 5; guessCellIndex++) {
+            Cell c = cells.get(guessCellIndex);
             boolean yellow = false;
             int yellowed = 0;
             
             // iterates over characters in the secret word
-            for (int j = 0; j < 5; j++) {
+            for (int secretCellIndex = 0; secretCellIndex < 5; secretCellIndex++) {
 
                 // checks if character has already been used to avoid false duplicates
                 boolean copy = false;
                 for (int k : used) {
-                    if (j == k) {
+                    if (secretCellIndex == k) {
                         copy = true;
                     }
                 }
                 if (copy) {
-                    if (j == 4 && ! yellow) {
+                    if (secretCellIndex == 4 && ! yellow) {
                         c.setColor(pane, 3);
                         correct = false;
                         break;
@@ -91,22 +90,21 @@ public class WordRow {
                 }
                 
                 
-                boolean match = c.getLetter().equals(secretWord.substring(j,j+1));
-                if (i == j && match) {
+                boolean match = c.getLetter().equals(secretWord.substring(secretCellIndex,secretCellIndex+1));
+                if (guessCellIndex == secretCellIndex && match) {
                     c.setColor(pane, 1);
-                    green = true;
-                    used.add(j);
+                    used.add(secretCellIndex);
                     break;
                 } else if (match) {
                     c.setColor(pane, 2);
                     yellow = true;
-                    yellowed = j;
-                } else if (j == 4 && !yellow) {
+                    yellowed = secretCellIndex;
+                } else if (secretCellIndex == 4 && !yellow) {
                     c.setColor(pane, 3);
                     correct = false;
                     break;
                 }
-                if (yellow && j == 4) {
+                if (yellow && secretCellIndex == 4) {
                     correct = false;
                     used.add(yellowed);
                 }
@@ -137,14 +135,6 @@ public class WordRow {
             i--;
         }
     }
-    
-    /* private void pause() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            System.out.println("Interrupted");
-        }
-    }*/
     
     public void wordleFailed() {
         System.out.println("Good try! The word was \"" + secretWord + "\".");
