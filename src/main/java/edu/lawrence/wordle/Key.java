@@ -40,7 +40,8 @@ public class Key {
     }
     
     public void setColor(GamePane pane, Color color) {
-        if (rect.getFill() == Color.GREEN) { return; }
+        if (rect.getFill() == Color.rgb(105, 171, 100)) { return; }
+        
         pane.getChildren().removeAll(rect, text);
         rect.setFill(color);
         text.setStroke(Color.WHITE);

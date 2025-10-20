@@ -14,6 +14,9 @@ public class Cell {
     final private Rectangle rect;
     final private int row, col;
     final private static Font font = new Font("Monospaced Bold", 40);
+    static final Color green = Color.rgb(105, 171, 100);
+    static final Color yellow = Color.rgb(201, 180, 87);
+    static final Color darkGrey = Color.rgb(121, 125, 128);
     
     public Cell(int row, int col) {
         this.row = row;
@@ -47,14 +50,14 @@ public class Cell {
         pane.getChildren().removeAll(rect, text);
         
         if (value == 1) {
-            rect.setFill(Color.GREEN);
-            key.setColor(pane, Color.GREEN);
+            rect.setFill(green);
+            key.setColor(pane, green);
         } else if (value == 2) {
-            rect.setFill(Color.GOLD);
-            key.setColor(pane, Color.GOLD);
+            rect.setFill(yellow);
+            key.setColor(pane, yellow);
         } else {
-            rect.setFill(Color.DARKSLATEGREY);
-            key.setColor(pane, Color.DARKSLATEGREY);
+            rect.setFill(darkGrey);
+            key.setColor(pane, darkGrey);
         }
         rect.setStroke(null);
         text.setFill(Color.WHITE);
