@@ -1,4 +1,4 @@
-# Wordle in Java
+# Wordle in [JavaFX](https://openjfx.io/)
 
 This project is a recreation of the viral Wordle NYT game in Java. It is not intended for distribution, please support the original game.
 
@@ -43,3 +43,5 @@ This project is only intended as an academic and explorative exercise of trying 
 ## Acknowledgments
 
 This project was originally created for an intermediate programming course, so the credit for the idea goes to my professor. I sought to go above an beyond in making this idea come to life.
+
+I used [Scene Builder](https://gluonhq.com/products/scene-builder/) to edit the fxml files. Scene Builder makes it much easier to create GUIs based on standard building blocks.
